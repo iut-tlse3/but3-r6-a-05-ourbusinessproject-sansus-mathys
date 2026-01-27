@@ -1,26 +1,24 @@
 package ourbusinessproject;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
 
 public class Project {
-    @NotNull
-    @Size(min = 1)
+    @NotBlank
     private String title;
     private String description;
 
-    public String getDescription() {
-        return description;
-    }
-
+    /**
+     * set the description
+     * @param description the description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
+    /**
+     * set the title
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
