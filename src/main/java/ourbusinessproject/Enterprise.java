@@ -58,4 +58,11 @@ public class Enterprise {
     public void setName(String name) {
         Name = name;
     }
+
+    /**
+     * @return the enterprise id
+     */
+    public Long getId() {
+        return id;
+    }
 }

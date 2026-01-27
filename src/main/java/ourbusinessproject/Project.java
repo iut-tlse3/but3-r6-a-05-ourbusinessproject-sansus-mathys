@@ -31,4 +31,11 @@ public class Project {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * @return the project id
+     */
+    public Long getId() {
+        return id;
+    }
 }
