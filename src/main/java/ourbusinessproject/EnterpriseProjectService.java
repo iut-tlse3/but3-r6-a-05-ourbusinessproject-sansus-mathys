@@ -2,7 +2,11 @@ package ourbusinessproject;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EnterpriseProjectService {
@@ -29,6 +33,7 @@ public class EnterpriseProjectService {
      * @param enterprise the project's enterprise
      * @return the created project
      */
+    @Transactional
     public Project newProject(String title, String description, Enterprise enterprise) {
         Project project = new Project();
         project.setTitle(title);
@@ -57,6 +62,7 @@ public class EnterpriseProjectService {
      * @param mail the mail of the enterprise
      * @return the created enterprise
      */
+    @Transactional
     public Enterprise newEnterprise(
             String name,
             String description,
@@ -80,5 +86,15 @@ public class EnterpriseProjectService {
      */
     public Enterprise findEnterpriseById(Long enterpriseId) {
         return this.entityManager.find(Enterprise.class, enterpriseId);
+    }
+
+    /**
+     *
+     * @return all projects
+     */
+    public List<Project> findAllProjects() {
+        String query = "SELECT p FROM Project p ORDER BY p.title";
+        TypedQuery<Project> queryObj = entityManager.createQuery(query,Project.class);
+        return queryObj.getResultList();
     }
 }
