@@ -24,14 +24,15 @@ public class EnterpriseProjectService {
 
     /**
      * Create a new project
-     * @param aTitle the title of the new project
-     * @param aDescription the description of the new project
+     * @param title the title of the new project
+     * @param description the description of the new project
      * @return the created project
      */
-    public Project newProject(String aTitle, String aDescription) {
+    public Project newProject(String title, String description, Enterprise enterprise) {
         Project project = new Project();
-        project.setTitle(aTitle);
-        project.setDescription(aDescription);
+        project.setTitle(title);
+        project.setDescription(description);
+        project.setEnterprise(enterprise);
         this.entityManager.persist(project);
         this.entityManager.flush();
         return project;
