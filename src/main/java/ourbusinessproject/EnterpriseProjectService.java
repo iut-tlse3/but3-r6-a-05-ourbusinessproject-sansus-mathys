@@ -26,6 +26,7 @@ public class EnterpriseProjectService {
      * Create a new project
      * @param title the title of the new project
      * @param description the description of the new project
+     * @param enterprise the project's enterprise
      * @return the created project
      */
     public Project newProject(String title, String description, Enterprise enterprise) {
@@ -35,6 +36,7 @@ public class EnterpriseProjectService {
         project.setEnterprise(enterprise);
         this.entityManager.persist(project);
         this.entityManager.flush();
+        enterprise.addProject(project);
         return project;
     }
 
@@ -49,23 +51,23 @@ public class EnterpriseProjectService {
 
     /**
      * Create a new enterprise
-     * @param aName the name of the enterprise
-     * @param aDescription the description of the enterprise
-     * @param aContactName the contact name of the enterprise
+     * @param name the name of the enterprise
+     * @param description the description of the enterprise
+     * @param contactName the contact name of the enterprise
      * @param mail the mail of the enterprise
      * @return the created enterprise
      */
     public Enterprise newEnterprise(
-            String aName,
-            String aDescription,
-            String aContactName,
+            String name,
+            String description,
+            String contactName,
             String mail
     ) {
         Enterprise enterprise = new Enterprise();
-        enterprise.setName(aName);
-        enterprise.setDescription(aDescription);
+        enterprise.setName(name);
+        enterprise.setDescription(description);
         enterprise.setContactEmail(mail);
-        enterprise.setContactName(aContactName);
+        enterprise.setContactName(contactName);
         this.entityManager.persist(enterprise);
         this.entityManager.flush();
         return enterprise;
