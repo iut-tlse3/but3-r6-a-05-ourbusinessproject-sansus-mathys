@@ -87,4 +87,12 @@ public class Enterprise {
         }
         this.projects.add(project);
     }
+
+    /**
+     *
+     * @return the name
+     */
+    public String getName() {
+        return Name;
+    }
 }
