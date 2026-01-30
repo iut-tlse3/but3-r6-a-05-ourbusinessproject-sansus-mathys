@@ -26,6 +26,13 @@ public class InitializationService {
      */
     @Transactional
     public void initProjects() {
+        /*
+         * L'utilisation de @Transactional garantit l'atomicité de cette méthode.
+         * Toutes les opérations de base de données effectuées ici (création des 3 projets) font partie d'un même bloc de travail.
+         * Si une exception survient, alors Spring intercepte l'erreur et déclenche un rollback"
+         * Cela annule toutes les insertions précédentes (Projet 1 et 2) qui avaient pourtant réussi,
+         * cela garantit ainsi la cohérence de la base de données.
+         */
         initEnterprise();
         project1E1 = enterpriseProjectService.newProject("p1E1","P1E1 desc",enterprise1);
         project1E2 = enterpriseProjectService.newProject("p1E2","P1E2 desc",enterprise2);
